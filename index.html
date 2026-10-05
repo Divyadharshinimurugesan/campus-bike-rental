@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus Bike Rental</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <header class="navbar">
+        <div class="logo">
+            🚲 Campus Bike Rental
+        </div>
+
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#bikes">Bikes</a>
+            <a href="#rentals">My Rentals</a>
+        </nav>
+    </header>
+
+
+    <!-- Home Section -->
+    <section id="home" class="hero">
+
+        <div class="hero-content">
+
+            <h1>Ride Around Campus<br>with Ease 🚲</h1>
+
+            <p>
+                Rent a bike quickly and conveniently.
+                Choose your bike, select your rental duration,
+                and start your campus ride.
+            </p>
+
+            <a href="#bikes" class="btn">
+                View Available Bikes
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- Bikes Section -->
+    <section id="bikes" class="section">
+
+        <div class="section-title">
+            <h2>Available Bikes</h2>
+
+            <p>
+                Choose a bike that suits your campus journey.
+            </p>
+        </div>
+
+
+        <div class="bike-container">
+
+            <!-- Bike 1 -->
+            <div class="bike-card">
+
+                <div class="bike-image">
+                    🚲
+                </div>
+
+                <h3>Campus Cruiser</h3>
+
+                <p class="bike-id">
+                    Bike ID: BK101
+                </p>
+
+                <p class="price">
+                    ₹20 <span>/ hour</span>
+                </p>
+
+                <button
+                    class="rent-btn"
+                    onclick="rentBike('BK101', 'Campus Cruiser', 20)">
+                    Rent Now
+                </button>
+
+            </div>
+
+
+            <!-- Bike 2 -->
+            <div class="bike-card">
+
+                <div class="bike-image">
+                    🚴
+                </div>
+
+                <h3>Mountain Bike</h3>
+
+                <p class="bike-id">
+                    Bike ID: BK102
+                </p>
+
+                <p class="price">
+                    ₹25 <span>/ hour</span>
+                </p>
+
+                <button
+                    class="rent-btn"
+                    onclick="rentBike('BK102', 'Mountain Bike', 25)">
+                    Rent Now
+                </button>
+
+            </div>
+
+
+            <!-- Bike 3 -->
+            <div class="bike-card">
+
+                <div class="bike-image">
+                    🚲
+                </div>
+
+                <h3>City Rider</h3>
+
+                <p class="bike-id">
+                    Bike ID: BK103
+                </p>
+
+                <p class="price">
+                    ₹30 <span>/ hour</span>
+                </p>
+
+                <button
+                    class="rent-btn"
+                    onclick="rentBike('BK103', 'City Rider', 30)">
+                    Rent Now
+                </button>
+
+            </div>
+
+
+            <!-- Bike 4 -->
+            <div class="bike-card">
+
+                <div class="bike-image">
+                    🚴
+                </div>
+
+                <h3>Speed Bike</h3>
+
+                <p class="bike-id">
+                    Bike ID: BK104
+                </p>
+
+                <p class="price">
+                    ₹35 <span>/ hour</span>
+                </p>
+
+                <button
+                    class="rent-btn"
+                    onclick="rentBike('BK104', 'Speed Bike', 35)">
+                    Rent Now
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Rental Form Section -->
+    <section id="rental-form" class="section rental-section">
+
+        <div class="section-title">
+
+            <h2>Rent a Bike</h2>
+
+            <p>
+                Enter your details to confirm your rental.
+            </p>
+
+        </div>
+
+
+        <div class="rental-form-container">
+
+            <form id="rentalForm">
+
+                <div class="form-group">
+
+                    <label for="studentName">
+                        Student Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="studentName"
+                        placeholder="Enter your name"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="studentId">
+                        Student ID
+                    </label>
+
+                    <input
+                        type="text"
+                        id="studentId"
+                        placeholder="Enter your student ID"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="selectedBike">
+                        Selected Bike
+                    </label>
+
+                    <input
+                        type="text"
+                        id="selectedBike"
+                        readonly
+                        placeholder="Select a bike above">
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="duration">
+                        Rental Duration (Hours)
+                    </label>
+
+                    <input
+                        type="number"
+                        id="duration"
+                        min="1"
+                        max="24"
+                        value="1"
+                        required
+                        onchange="calculateTotal()">
+
+                </div>
+
+
+                <div class="total-box">
+
+                    <span>Total Amount</span>
+
+                    <strong id="totalAmount">
+                        ₹0
+                    </strong>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="confirm-btn">
+                    Confirm Rental
+                </button>
+
+            </form>
+
+        </div>
+
+    </section>
+
+
+    <!-- My Rentals Section -->
+    <section id="rentals" class="section">
+
+        <div class="section-title">
+
+            <h2>My Rentals</h2>
+
+            <p>
+                View your active and previous bike rentals.
+            </p>
+
+        </div>
+
+
+        <div id="rentalList" class="rental-list">
+
+            <div class="empty-rentals">
+
+                <div class="empty-icon">
+                    🚲
+                </div>
+
+                <p>
+                    No active rentals yet.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Footer -->
+    <footer>
+
+        <h3>🚲 Campus Bike Rental</h3>
+
+        <p>
+            Simple, convenient and eco-friendly campus transportation.
+        </p>
+
+       
+
+    </footer>
+
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+
+</body>
+</html>
+```
